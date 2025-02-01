@@ -2,11 +2,8 @@ import pandas as pd
 import nltk  
 from nltk.corpus import stopwords  
 from nltk.tokenize import word_tokenize  
-from nltk.classify import NaiveBayesClassifier  
-from sklearn.model_selection import train_test_split  
 from nltk.sentiment import SentimentIntensityAnalyzer
 from wordcloud import WordCloud
-from collections import Counter
 import matplotlib.pyplot as plt
 
 # Load the dataset
@@ -88,12 +85,7 @@ plt.xticks(rotation=0)
 plt.tight_layout()
 plt.show()
 
-# 2. Line Graph - Average Review Rating Over Time (Optional)
-# We need a 'Date' or 'Time' column for this. If not available, we can use the index or create a mock 'Date'.
-# Assuming 'Date' column exists (you can replace this with your actual column name if available)
-# If no date is present, use review index as a time series placeholder
-# df_sample['Date'] = pd.to_datetime(df_sample['Date'])
-# df_sample['Year'] = df_sample['Date'].dt.year
+# 2. Line Graph - Average Review Rating Over Time 
 
 # If 'Date' is missing, using the index as a proxy for time
 df_sample['ReviewIndex'] = df_sample.index
@@ -108,6 +100,7 @@ plt.tight_layout()
 plt.show()
 
 # 3. Word Cloud - Most Common Words
+
 # Combine all processed reviews into a single string
 all_reviews = ' '.join(df_sample['processed_review'].apply(lambda x: ' '.join(x)))
 
