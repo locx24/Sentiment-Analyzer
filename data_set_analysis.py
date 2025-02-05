@@ -70,21 +70,32 @@ sentiment_counts = df_sample['sentiment'].value_counts()
 
 plt.figure(figsize=(6, 4))
 sentiment_counts.plot(kind='bar', color=['#4CAF50', '#FFC107', '#F44336'])
+
+# set chart titles
 plt.title('Sentiment Distribution of Reviews')
 plt.xlabel('Sentiment')
 plt.ylabel('Number of Reviews')
 plt.xticks(rotation=0)
+
 plt.tight_layout()
 plt.show()
 
 # 2. line graph for Average Review Rating Over Time 
 
-plt.figure(figsize=(8, 6))
+plt.figure(figsize=(10, 6))
 df_sample.groupby(df_sample['Date'].dt.to_period("M"))['Rating'].mean().plot(kind='line', marker='o', color='blue')
+
+# set chart labels
 plt.title('Average Review Rating Over Time')
 plt.xlabel('Date')
 plt.ylabel('Average Rating')
+
+# format chart
 plt.xticks(rotation=45)
+
+# Set y-axis scale from 1 to 5
+plt.ylim(1, 5)
+
 plt.tight_layout()
 plt.show()
 
