@@ -11,6 +11,7 @@ def get_sentiment(review):
     
     compound_score = score['compound']
     
+    # if statement for sentiment analysis
     if compound_score >= 0.05:
         
         sentiment = "Positive"
@@ -25,6 +26,7 @@ def get_sentiment(review):
         
     return sentiment, compound_score
 
+# function when the user clicks the submit button of the form
 def submit():
     
     review = textbox.get("1.0", tk.END).strip()
