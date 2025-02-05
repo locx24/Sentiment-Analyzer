@@ -41,7 +41,7 @@ def submit():
         
         result_label.config(text="Please enter a review.")
     
-    # Ensure the label is centered below the submit button
+    # place label below the submit button
     result_label.place(x=300, y=250, anchor="center")
 
 # call constructor
@@ -63,7 +63,7 @@ textbox.pack(padx=10)
 
 # set submit button
 button = tk.Button(root, text="Submit", command=submit)
-button.place(x=300, y=205, anchor="center")  # Centered horizontally
+button.place(x=300, y=205, anchor="center") 
 
 # display sentiment result
 result_label = tk.Label(root, text="", font=('Arial', 12))
