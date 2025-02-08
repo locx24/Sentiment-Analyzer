@@ -9,11 +9,11 @@ import matplotlib.pyplot as plt
 # load the dataset
 df = pd.read_csv("tripadvisor_hotel_reviews.csv")
 
-# sample a subset of the data (100 rows. dataset contains a total 20,491 reviews)
-df_sample = df.sample(n=100, random_state=42)
+# sample a subset of the data (1000 rows. dataset contains a total 20,491 reviews)
+df_sample = df.sample(n=1000, random_state=42)
 
 # generate time interval
-df_sample['Date'] = pd.date_range(start='2024-01-01', periods=len(df_sample), freq='D')
+df_sample['Date'] = pd.date_range(start='2022-01-01', periods=len(df_sample), freq='D')
 
 # text preprocessing performing tokenization and removal of stopwords
 stop_words = set(stopwords.words("english"))
@@ -85,7 +85,7 @@ plt.show()
 plt.figure(figsize=(10, 6))
 df_sample.groupby(df_sample['Date'].dt.to_period("M"))['Rating'].mean().plot(kind='line', marker='o', color='blue')
 
-# set chart labels
+# set chart titles
 plt.title('Average Review Rating Over Time')
 plt.xlabel('Date')
 plt.ylabel('Average Rating')
@@ -107,7 +107,7 @@ all_reviews = ' '.join(df_sample['processed_review'].apply(lambda x: ' '.join(x)
 # generate the word cloud
 wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_reviews)
 
-# display the word cloud
+# set chart titles and display the word cloud
 plt.figure(figsize=(10, 6))
 plt.imshow(wordcloud, interpolation='bilinear')
 plt.axis('off')
