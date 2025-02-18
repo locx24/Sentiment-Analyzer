@@ -27,6 +27,6 @@
 
 6. Run the user_input_analysis.py file and leave a review of any sentiment
 
-7. Your review will be evaluated and given a polarity sore. Additionally, the review will be classified as either Positive, Neutral, or Negative.
+7. Your review will be evaluated and given a polarity sore. Additionally, the review will be classified as either Positive, Neutral, or Negative
     
 
