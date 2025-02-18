@@ -5,6 +5,10 @@ from nltk.tokenize import word_tokenize
 from nltk.sentiment import SentimentIntensityAnalyzer
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
 
 # load the dataset
 df = pd.read_csv("tripadvisor_hotel_reviews.csv")
@@ -61,7 +65,40 @@ def categorize_sentiment(text):
 # apply sentiment categorization to the 'processed_review' column
 df_sample['sentiment'] = df_sample['processed_review'].apply(categorize_sentiment)
 
+# ---------------------------------------------------------------------------------------------------------------ACCURACY METRIC
+
+# map sentiment labels to integers
+df_sample['sentiment_label'] = df_sample['sentiment'].map({'Positive': 1, 'Neutral': 0, 'Negative': -1})
+
+# limit features to 500 most relevant words
+vectorizer = TfidfVectorizer(max_features=500)  
+
+# convert the processed review text into a numerical value
+X = vectorizer.fit_transform(df_sample['processed_review'].apply(lambda x: ' '.join(x)))
+
+# get the sentiment labels
+y = df_sample['sentiment_label']
+
+# split the dataset and train the model
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# initialize a logistic regression model
+log_model = LogisticRegression(random_state=0, max_iter=500)
+
+# train the logistic regression model using the training dataset
+log_model.fit(X_train, y_train)
+
+# make predictions on the test dataset
+y_pred = log_model.predict(X_test)
+
+# calculate the accuracy of the model
+accuracy = accuracy_score(y_test, y_pred)
+
+# print the model's accuracy to the console
+print(f'Logistic Regression Accuracy: {accuracy:.2f}')
+
 # ---------------------------------------------------------------------------------------------------------------DESCRIPTIVE METHODS
+
 
 # sentiment distribution
 sentiment_counts = df_sample['sentiment'].value_counts()
