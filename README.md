@@ -23,6 +23,10 @@
     nltk.download('punkt_tab')
     nltk.download('vader_lexicon')
 
-5. The file created in step 4 can now be deleted as the "punkt" and "stopwords" libraries have successfully downloaded    
+5. The file created in step 4 can now be deleted as the "punkt" and "stopwords" libraries have successfully downloaded
+
+6. Run the user_input_analysis.py file and leave a review of any sentiment
+
+7. Your review will be evaluated and given a polarity sore. Additionally, the review will be classified as either Positive, Neutral, or Negative.
     
 
